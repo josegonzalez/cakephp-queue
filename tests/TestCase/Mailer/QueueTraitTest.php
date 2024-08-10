@@ -19,6 +19,7 @@ namespace Cake\Queue\Test\TestCase\Mailer;
 use Cake\Mailer\Exception\MissingActionException;
 use Cake\Queue\QueueManager;
 use Cake\TestSuite\TestCase;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use TestApp\WelcomeMailer;
 
 class QueueTraitTest extends TestCase
@@ -38,10 +39,8 @@ class QueueTraitTest extends TestCase
 
     /**
      * Test that QueueTrait calls push
-     *
-     * @runInSeparateProcess
-     * @return @void
      */
+    #[RunInSeparateProcess]
     public function testQueueTraitCallsPush()
     {
         $queue = new WelcomeMailer();

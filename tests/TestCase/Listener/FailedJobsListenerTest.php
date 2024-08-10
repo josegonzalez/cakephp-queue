@@ -28,6 +28,7 @@ use Cake\Queue\QueueManager;
 use Cake\TestSuite\TestCase;
 use Enqueue\Null\NullConnectionFactory;
 use Enqueue\Null\NullMessage;
+use PHPUnit\Framework\Attributes\DataProvider;
 use RuntimeException;
 use stdClass;
 use TestApp\Job\LogToDebugJob;
@@ -113,9 +114,9 @@ class FailedJobsListenerTest extends TestCase
     }
 
     /**
-     * @dataProvider storeFailedJobExceptionDataProvider
      * @return void
      */
+    #[DataProvider('storeFailedJobExceptionDataProvider')]
     public function testStoreFailedJobException($eventData, $exceptionMessage)
     {
         $tableLocator = $this

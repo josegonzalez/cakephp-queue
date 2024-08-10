@@ -23,6 +23,8 @@ use Cake\Queue\QueueManager;
 use Cake\Queue\Test\test_app\src\Job\LogToDebugWithServiceJob;
 use Cake\Queue\Test\TestCase\DebugLogTrait;
 use Cake\TestSuite\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use TestApp\Job\LogToDebugJob;
 use TestApp\Job\RequeueJob;
 use TestApp\WelcomeMailerListener;
@@ -48,9 +50,8 @@ class WorkerCommandTest extends TestCase
 
     /**
      * Test that queue will run for one second
-     *
-     * @runInSeparateProcess
      */
+    #[RunInSeparateProcess]
     public function testQueueProcessesStart()
     {
         Configure::write('Queue', [
@@ -65,9 +66,8 @@ class WorkerCommandTest extends TestCase
 
     /**
      * Test that queue will run for one second with valid listener
-     *
-     * @runInSeparateProcess
      */
+    #[RunInSeparateProcess]
     public function testQueueProcessesWithListener()
     {
         Configure::write('Queue', [
@@ -83,9 +83,8 @@ class WorkerCommandTest extends TestCase
 
     /**
      * Test that queue will abort when the passed config is not present in the app configuration.
-     *
-     * @runInSeparateProcess
      */
+    #[RunInSeparateProcess]
     public function testQueueWillAbortWithMissingConfig()
     {
         Configure::write('Queue', [
@@ -102,9 +101,8 @@ class WorkerCommandTest extends TestCase
 
     /**
      * Test that queue will abort with invalid listener
-     *
-     * @runInSeparateProcess
      */
+    #[RunInSeparateProcess]
     public function testQueueProcessesWithInvalidListener()
     {
         Configure::write('Queue', [
@@ -121,9 +119,8 @@ class WorkerCommandTest extends TestCase
 
     /**
      * Test that queue will write to specified logger option
-     *
-     * @runInSeparateProcess
      */
+    #[RunInSeparateProcess]
     public function testQueueProcessesWithLogger()
     {
         Configure::write('Queue', [
@@ -156,10 +153,9 @@ class WorkerCommandTest extends TestCase
 
     /**
      * Start up the worker queue, push a job, and see that it processes
-     *
-     * @dataProvider dataProviderCallableTypes
-     * @runInSeparateProcess
      */
+    #[DataProvider('dataProviderCallableTypes')]
+    #[RunInSeparateProcess]
     public function testQueueProcessesJob($callable)
     {
         $config = [
@@ -185,9 +181,8 @@ class WorkerCommandTest extends TestCase
 
     /**
      * Set the processor name, Start up the worker queue, push a job, and see that it processes
-     *
-     * @runInSeparateProcess
      */
+    #[RunInSeparateProcess]
     public function testQueueProcessesJobWithProcessor()
     {
         $config = [
@@ -212,9 +207,8 @@ class WorkerCommandTest extends TestCase
 
     /**
      * Test non-default queue name
-     *
-     * @runInSeparateProcess
      */
+    #[RunInSeparateProcess]
     public function testQueueProcessesJobWithOtherQueue()
     {
         $config = [
@@ -240,9 +234,8 @@ class WorkerCommandTest extends TestCase
 
     /**
      * Test max-attempts option
-     *
-     * @runInSeparateProcess
      */
+    #[RunInSeparateProcess]
     public function testQueueProcessesJobWithMaxAttempts()
     {
         $config = [
@@ -268,9 +261,8 @@ class WorkerCommandTest extends TestCase
 
     /**
      * Test DI service injection works in tasks
-     *
-     * @runInSeparateProcess
      */
+    #[RunInSeparateProcess]
     public function testQueueProcessesJobWithDIService()
     {
         $this->skipIf(version_compare(Configure::version(), '4.2', '<'), 'DI Container is only available since CakePHP 4.2');
@@ -296,9 +288,8 @@ class WorkerCommandTest extends TestCase
 
     /**
      * Test that queue will process when a unique cache is configured.
-     *
-     * @runInSeparateProcess
      */
+    #[RunInSeparateProcess]
     public function testQueueProcessesWithUniqueCacheConfigured()
     {
         $config = [
