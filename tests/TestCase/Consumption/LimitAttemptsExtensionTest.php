@@ -13,6 +13,8 @@ use Cake\Queue\QueueManager;
 use Cake\Queue\Test\TestCase\DebugLogTrait;
 use Cake\TestSuite\TestCase;
 use Enqueue\Consumption\ChainExtension;
+use PHPUnit\Framework\Attributes\After;
+use PHPUnit\Framework\Attributes\BeforeClass;
 use Psr\Log\NullLogger;
 use TestApp\Job\MaxAttemptsIsThreeJob;
 use TestApp\Job\RequeueJob;
@@ -28,10 +30,7 @@ class LimitAttemptsExtensionTest extends TestCase
         EventManager::instance()->setEventList(new EventList());
     }
 
-    /**
-     * @beforeClass
-     * @after
-     */
+    #[BeforeClass, After]
     public static function dropConfigs()
     {
         Log::drop('debug');

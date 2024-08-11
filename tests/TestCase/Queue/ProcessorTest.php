@@ -25,6 +25,7 @@ use Cake\TestSuite\TestCase;
 use Enqueue\Null\NullConnectionFactory;
 use Enqueue\Null\NullMessage;
 use Interop\Queue\Processor as InteropProcessor;
+use PHPUnit\Framework\Attributes\DataProvider;
 use TestApp\TestProcessor;
 
 class ProcessorTest extends TestCase
@@ -53,10 +54,10 @@ class ProcessorTest extends TestCase
      * @param string $jobMethod The method name to run
      * @param string $expected The expected process result.
      * @param string $logMessage The log message based on process result.
-     * @param string $dispacthedEvent The dispatched event based on process result.
-     * @dataProvider dataProviderTestProcess
+     * @param string $dispatchedEvent The dispatched event based on process result.
      * @return void
      */
+    #[DataProvider('dataProviderTestProcess')]
     public function testProcess($jobMethod, $expected, $logMessage, $dispatchedEvent)
     {
         $messageBody = [
