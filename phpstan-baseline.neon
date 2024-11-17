@@ -1,0 +1,13 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Method Cake\\Queue\\Job\\Message\:\:getTarget\(\) should return array\{class\-string, string\} but returns non\-empty\-array\<mixed, mixed\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Job/Message.php
+
+		-
+			message: '#^Parameter \#1 \$callback of static method Closure\:\:fromCallable\(\) expects callable\(\)\: mixed, array\{mixed, string\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Job/Message.php
